@@ -16,7 +16,7 @@ mean = 1                # Mean of the normal distribution from which intrinsic s
 sigma = 0.4             # Standard deviation of the normal distribution from which intrinsic speeds are sampled (i.e., extent of heterogeneity)
 eta = 0.1               # Size of uniform distribution from which the noise in orientation of agent is sampled
 If = 0.02               # Strength of hydrodynamic field
-spr_const = 50          # Spring constant pf the collsion force 
+spr_const = 50          # Spring constant of the collsion force 
 rad_int = 0.1           # Radius of agent
 
 
