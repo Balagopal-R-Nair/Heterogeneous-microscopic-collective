@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib as plt
-from tqdm import tqdm
+# from tqdm import tqdm
 
 
 
@@ -243,7 +243,7 @@ def position_update(velocity,angles,position,num_part,box_length,dt):
 
     
 
-# Rreturns an NxN truth table for pairs of agents that are in contact with each other    
+# Returns an NxN truth table for pairs of agents that are in contact with each other    
 def collision_check(position,R,box_length):
     dx_ij, dy_ij = position[:,np.newaxis,0] - position[np.newaxis,:,0], position[:,np.newaxis,1] - position[np.newaxis,:,1]
     dx_ij, dy_ij = apply_periodic_boundary(dx_ij, dy_ij, box_length)
@@ -294,7 +294,8 @@ def run_model_once(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,num_i
     
     velocity_update(velocity,angles,position,force,num_part,box_length,dt,If,rad_int,eta) # calculates velocity of each agent based on the initial position and orientation
     total_collisions = 0
-    for i in tqdm(range(num_iter)): 
+    for i in (range(num_iter)): 
+    # for i in tqdm(range(num_iter)): 
        force = np.zeros([num_part,2])
        inter_force(force,position,num_part,box_length,rad_int,spr_const)
                 
@@ -378,7 +379,8 @@ def run_model_ensemble(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,n
     avg_speed = np.empty([num_iter - initialize])
     avg_speed_ens = np.empty([realizations])
     beta_angle_ensemble = []
-    for I in tqdm(range(realizations)):
+    for I in (range(realizations)):
+    # for I in tqdm(range(realizations)):
        
         
        init_position(position,num_part,box_length,mean,sigma)     
@@ -485,14 +487,15 @@ def run_model_ensemble(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,n
     # flat_total_angle_ens =  total_angle_ens.flatten()
     
     # Printing avg no. of collisions per realization and avg speed of an agent
-    # avg_coll = np.average(continuous_collision_counter_realization)
-    # print(f'avg no. of collisions: {avg_coll}')
+    avg_coll = np.average(continuous_collision_counter_realization)  # taking average of number of collisions in each realization
+    print(f'avg no. of collisions: {avg_coll}')
     # print(f'avg speed of agents: {total_avg_speed_ens}')
     
     
     # Saving data to be used for plotting
-    # np.savetxt(f"avg_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_avg_speed_per_particle) 
-    # np.savetxt(f"intrinsic_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_total_intrinsic_speed_for_avg) 
+    np.savetxt(f"avg_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_avg_speed_per_particle) 
+    np.savetxt(f"intrinsic_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_total_intrinsic_speed_for_avg) 
+    np.savetext(f"trial1_anglecheck_collision_angle_beta_60_part_sigma_{sigma}_If_{If}", flat_collision_angle_beta)
     return(flat_total_intrinsic_speed_ens,flat_total_speed_ens,flat_collision_angle_beta)           
                
 
