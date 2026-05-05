@@ -493,9 +493,17 @@ def run_model_ensemble(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,n
     
     
     # Saving data to be used for plotting
-    np.savetxt(f"avg_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_avg_speed_per_particle) 
-    np.savetxt(f"intrinsic_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_total_intrinsic_speed_for_avg) 
-    np.savetext(f"trial1_anglecheck_collision_angle_beta_60_part_sigma_{sigma}_If_{If}", flat_collision_angle_beta)
+    
+    # For figure 2 
+    np.savetxt(f"observed_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_total_speed_ens) 
+    np.savetxt(f"intrinsic_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_total_intrinsic_speed_ens) 
+    
+    # For figure 4
+    # np.savetxt(f"avg_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_avg_speed_per_particle) 
+    # np.savetxt(f"intrinsic_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_total_intrinsic_speed_for_avg)
+    
+    # For figure 6b 
+    # np.savetext(f"trial1_anglecheck_collision_angle_beta_60_part_sigma_{sigma}_If_{If}", flat_collision_angle_beta)
     return(flat_total_intrinsic_speed_ens,flat_total_speed_ens,flat_collision_angle_beta)           
                
 
