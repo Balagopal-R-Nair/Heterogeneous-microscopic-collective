@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib as plt
-# from tqdm import tqdm
+from tqdm import tqdm
 
 
 
@@ -294,8 +294,8 @@ def run_model_once(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,num_i
     
     velocity_update(velocity,angles,position,force,num_part,box_length,dt,If,rad_int,eta) # calculates velocity of each agent based on the initial position and orientation
     total_collisions = 0
-    for i in (range(num_iter)): 
-    # for i in tqdm(range(num_iter)): 
+     
+    for i in tqdm(range(num_iter)): 
        force = np.zeros([num_part,2])
        inter_force(force,position,num_part,box_length,rad_int,spr_const)
                 
@@ -379,8 +379,8 @@ def run_model_ensemble(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,n
     avg_speed = np.empty([num_iter - initialize])
     avg_speed_ens = np.empty([realizations])
     beta_angle_ensemble = []
-    for I in (range(realizations)):
-    # for I in tqdm(range(realizations)):
+    
+    for I in tqdm(range(realizations)):
        
         
        init_position(position,num_part,box_length,mean,sigma)     
@@ -494,15 +494,15 @@ def run_model_ensemble(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,n
     
     # Saving data to be used for plotting
     
-    # For figure 2 
+    # Data for figure 2 
     np.savetxt(f"observed_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_total_speed_ens) 
     np.savetxt(f"intrinsic_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_total_intrinsic_speed_ens) 
     
-    # For figure 4
+    # Data for figure 4
     # np.savetxt(f"avg_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_avg_speed_per_particle) 
     # np.savetxt(f"intrinsic_speed_particle_60_part_sigma_{sigma}_If_{If}", flat_total_intrinsic_speed_for_avg)
     
-    # For figure 6b 
+    # Data for figure 6b 
     # np.savetext(f"trial1_anglecheck_collision_angle_beta_60_part_sigma_{sigma}_If_{If}", flat_collision_angle_beta)
     return(flat_total_intrinsic_speed_ens,flat_total_speed_ens,flat_collision_angle_beta)           
                
