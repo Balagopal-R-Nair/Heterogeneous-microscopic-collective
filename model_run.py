@@ -34,12 +34,12 @@ print(f'spring const = {spr_const}, mean = {mean}')
 print(f'sigma = {sigma} , If = {If}')
 
 # Running simulation once
-intrinsic_speeds, observed_speeds, total_collisions = run_model_once(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,num_iter,initialize,position,velocity,angles,force)
+# intrinsic_speeds, observed_speeds, total_collisions = run_model_once(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,num_iter,initialize,position,velocity,angles,force)
 
 
 
 # Running for multiple realizations, prints the average number of collisions per realization
-# intrinsic_speeds,observed_speeds,collision_angles = run_model_ensemble(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,num_iter,initialize,realizations,position,velocity,angles,force)
+intrinsic_speeds,observed_speeds,collision_angles = run_model_ensemble(If,sigma,mean,box_length,rad_int,eta,spr_const,num_part,num_iter,initialize,realizations,position,velocity,angles,force)
 
 
 
